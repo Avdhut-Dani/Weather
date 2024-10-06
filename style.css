@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #001331;
+    background-color: #0b0d15;
 }
 .card{
     width: 90%;
@@ -16,6 +16,39 @@ body{
     border-radius: 20px;
     padding: 40px 20px;
     text-align: center;
+    position: relative;
+}
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.card::after, .card::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient( from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+    /* background-image: conic-gradient(transparent 50%, blue); */
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    border-radius: 20px;
+    padding: 3px;
+    animation: 3s spin linear infinite;
+}
+.card::before{
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+@keyframes spin{
+    from{
+        --anlge: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
 }
 .search{
     width: 100%;
